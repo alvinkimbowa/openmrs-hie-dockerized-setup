@@ -5,7 +5,7 @@
 echo "..STARTING OPENHIM , OPENMRS , HAPI-FHIR "
 docker-compose -f docker/docker-compose.yml up -d  --remove-orphans
 
- sleep 3m
+ sleep 4m
 
 #######################################
 # Check whether OpenMRS is Started
