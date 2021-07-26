@@ -45,12 +45,6 @@ hapifhir_start_wait_time=0
   done
  echo "HAPI FHIR SERVER STARTED SUCCESSFULLY" 
 
- ###########################################################
-# Load TX_PVLS Libraries and Measure Resources into HAPI FHIR
-############################################################
- echo "..LOADING MEASURE AND LIBRARY RESOURCES INTO HAPI FHIR "
-./scripts/load-resources.sh
- echo "LOADED MEASURE AND LIBRARY RESOURCES INTO HAPI FHIR "
 
  ###########################################################
 # Load OpenHIM metadata

@@ -19,7 +19,6 @@ services:
       - openmrs-referenceapplication-mysql-data:/var/lib/mysql
       - ../volumes/mysql.cnf:/etc/mysql/conf.d/custom.cnf  # mysql config preconfigured to allow binlog/debezium
       #- ./data:/var/lib/mysql
-      - ../volumes/dbdump:/docker-entrypoint-initdb.d 
 
   openmrs-referenceapplication:
     restart: "always"
