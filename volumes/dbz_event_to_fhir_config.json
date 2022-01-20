@@ -10,7 +10,7 @@
     "databaseSchema" : "openmrs",
     "databaseOffsetStorage" : "data/offset.dat",
     "databaseHistory" : "data/dbhistory.dat",
-    "snapshotMode" : "schema_only"
+    "snapshotMode" : "initial"
    },
   "eventConfigurations": {
     "location": {
