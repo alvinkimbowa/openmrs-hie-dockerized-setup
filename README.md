@@ -1,4 +1,4 @@
-## PLIR dockerized setup
+## OpenMRS HIE dockerized setup
 This project contains the dockerized setup for the [PLIR](https://wiki.openmrs.org/pages/viewpage.action?pageId=235278351) project Proof Of Concept.
 see [PLIR archtecture](https://wiki.openmrs.org/display/projects/Architectural+Design+Approach+to+support+an+integrated+approach+to+patient-level+indicator+reporting+for+OpenMRS)
 
