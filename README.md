@@ -20,9 +20,10 @@ To run the project , follow the instructions below .
 
 | Instance  |     URL       | credentials (user : password)|
 |---------- |:-------------:|------:                       |
-| OpenMRS   |http://localhost:8080/openmrs| admin : Admin123 |
-| OpenHIM   |    http://localhost:9000  |  root@openhim.org : openhim-password |
+| OpenMRS   | http://localhost:8080/openmrs| admin : Admin123 |
+| OpenHIM   | http://localhost:9000  |  root@openhim.org : openhim-password |
 | Hapi FHir | http://localhost:8090 |    hapi : hapi123| 
+| OpenCR    | https://localhost:3000/crux|  root@intrahealth.org  : intrahealth|
 
 
    Note:

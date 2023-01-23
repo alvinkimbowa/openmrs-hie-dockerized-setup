@@ -10,6 +10,16 @@
       "passwordAlgorithm": "sha512",
       "passwordSalt": "41271397c2fafc9d6a74660f5e611961",
       "passwordHash": "8f559989c523231c47eeda17d6951448428ebb9cb47fbeefc89b9c08d157ce6c89979b52c18ce95efef98e1f300a44b97a2e2c4ee10aff0b001a10e69535e33d"
+    } ,
+    {
+      "roles": [
+        "admin"
+      ],
+      "clientID": "opencr",
+      "name": "Client Registry",
+      "passwordAlgorithm": "sha512",
+      "passwordSalt": "f62b4c879d9c1c69b20f31176863aa60",
+      "passwordHash": "ba67095de0431091d06f02e45768519088fa0fc72c978b5958e342ffe131d6af3b870520ec088d5ca33b652a10012b736143174469af15c9d48895578090fe71"
     }
   ],
   "Channels": [
@@ -74,6 +84,61 @@
         "name": "Super User"
       },
       "alerts": []
+    } ,
+    {
+      "methods": [
+        "GET",
+        "POST",
+        "DELETE",
+        "PUT"
+      ],
+      "type": "http",
+      "allow": [
+        "opencr"
+      ],
+      "whitelist": [],
+      "authType": "private",
+      "matchContentTypes": [],
+      "properties": [],
+      "txViewAcl": [],
+      "txViewFullAcl": [],
+      "txRerunAcl": [],
+      "status": "enabled",
+      "rewriteUrls": false,
+      "addAutoRewriteRules": true,
+      "autoRetryEnabled": false,
+      "autoRetryPeriodMinutes": 60,
+      "requestBody": true,
+      "responseBody": true,
+      "name": "Add or Get Resource Data From/To openCR",
+      "description": "Add or Get Resource Data From/To openCR",
+      "urlPattern": "^/CR/fhir.*$",
+      "matchContentRegex": null,
+      "matchContentXpath": null,
+      "matchContentValue": null,
+      "matchContentJson": null,
+      "pollingSchedule": null,
+      "tcpHost": null,
+      "tcpPort": null,
+      "rewriteUrlsConfig": [],
+      "alerts": [],
+      "routes": [
+        {
+          "type": "http",
+          "status": "enabled",
+          "forwardAuthHeader": false,
+          "name": "Add/Get Resources",
+          "secured": false,
+          "host": "opencr",
+          "port": 3000,
+          "path": "",
+          "pathTransform": "s/CR\\/fhir/fhir/g",
+          "primary": true,
+          "username": "",
+          "password": ""
+        }
+      ],
+      "priority": 1
     }
   ],
   "Mediators": [],

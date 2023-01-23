@@ -50,10 +50,10 @@ hapifhir_start_wait_time=0
 # Load OpenHIM metadata
 ############################################################
  echo "..LOADING CHANNEL AND CLIENT METADATA INTO OPENHIM"
- ./scripts/openhim-api.sh root@openhim.org openhim-password -v https://localhost:8085/metadata -d @./config/openhim-config.json -H "Content-Type:application/json"
+ ./scripts/openhim-api.sh root@openhim.org openhim-password -v https://localhost:8085/metadata -d @./config/openhim//openhim-config.json -H "Content-Type:application/json"
 
  ###########################################################
 # Starting the Debezium-streaming-fhir-analytics tool
 ############################################################
- echo "..STARTING STREAMING PIPE LINE " 
-docker-compose -f docker/pipeline-compose.yml up  
+ #echo "..STARTING STREAMING PIPE LINE " 
+#docker-compose -f docker/pipeline-compose.yml up  
