@@ -1,0 +1,210 @@
+{
+  "Users": [{
+    "groups": [
+      "admin"
+    ],
+    "firstname": "Super",
+    "surname": "User",
+    "email": "root@openhim.org",
+    "passwordAlgorithm": "sha512",
+    "passwordHash": "3d6b43da9421e7388c5091cfb4b8a9c1fd97d7d88a12c8fcf031bee8afc7a7653b8019bb7042a0a9cbb98d5527751df9d209f8ecbdf8b29905d8e64f1b0c9e6d",
+    "passwordSalt": "88e65849aa7f1103798e760fc0dd6602",
+    "expiry": null,
+    "locked": false,
+    "settings": {
+      "visualizer": {
+        "data": {
+          "components": [],
+          "channels": [],
+          "mediators": [],
+          "color": {
+            "inactive": "#cccccc",
+            "active": "#4cae4c",
+            "error": "#d43f3a",
+            "text": "#000000"
+          },
+          "size": {
+            "responsive": true,
+            "width": 1000,
+            "height": 400,
+            "padding": 20
+          },
+          "time": {
+            "updatePeriod": 200,
+            "minDisplayPeriod": 500,
+            "maxSpeed": 5,
+            "maxTimeout": 5000
+          }
+        },
+        "status": 200,
+        "config": {
+          "method": "GET",
+          "transformRequest": [
+            null
+          ],
+          "transformResponse": [
+            null
+          ],
+          "jsonpCallbackParam": "callback",
+          "url": "config/visualizer.json",
+          "headers": {
+            "Accept": "application/json, text/plain, */*",
+            "auth-username": "root@openhim.org",
+            "auth-ts": "2021-08-03T17:14:20.170Z",
+            "auth-salt": "519f3ad7deb57cafe99db3035fa84e55",
+            "auth-token": "b776fe544914ae359c28548c3e513d38a270b8f99096fadaf6e8e4143e419f4646c07b1c82c671e2eb98289f40debce5348ea5efc5ee2a56ff7bf776631a8dbd"
+          }
+        },
+        "statusText": "OK",
+        "xhrStatus": "complete"
+      }
+    },
+    "token": null,
+    "tokenType": null
+  }
+],
+  "Clients": [
+    {
+      "roles": [
+        "admin"
+      ],
+      "clientID": "hapi",
+      "name": "Shared Health Record",
+      "passwordAlgorithm": "sha512",
+      "passwordSalt": "41271397c2fafc9d6a74660f5e611961",
+      "passwordHash": "8f559989c523231c47eeda17d6951448428ebb9cb47fbeefc89b9c08d157ce6c89979b52c18ce95efef98e1f300a44b97a2e2c4ee10aff0b001a10e69535e33d"
+    } ,
+    {
+      "roles": [
+        "admin"
+      ],
+      "clientID": "opencr",
+      "name": "Client Registry",
+      "passwordAlgorithm": "sha512",
+      "passwordSalt": "f62b4c879d9c1c69b20f31176863aa60",
+      "passwordHash": "ba67095de0431091d06f02e45768519088fa0fc72c978b5958e342ffe131d6af3b870520ec088d5ca33b652a10012b736143174469af15c9d48895578090fe71"
+    }
+  ],
+  "Channels": [
+    {
+      "methods": [
+        "GET",
+        "POST",
+        "DELETE",
+        "PUT",
+        "OPTIONS",
+        "HEAD",
+        "TRACE",
+        "CONNECT",
+        "PATCH"
+      ],
+      "type": "http",
+      "allow": [
+        "hapi"
+      ],
+      "whitelist": [],
+      "authType": "private",
+      "matchContentTypes": [],
+      "properties": [],
+      "txViewAcl": [],
+      "txViewFullAcl": [],
+      "txRerunAcl": [],
+      "status": "enabled",
+      "rewriteUrls": false,
+      "addAutoRewriteRules": true,
+      "autoRetryEnabled": false,
+      "autoRetryPeriodMinutes": 60,
+      "routes": [
+        {
+          "type": "http",
+          "status": "enabled",
+          "forwardAuthHeader": false,
+          "name": "SHR Channel",
+          "secured": false,
+          "host": "172.17.0.1",
+          "port": 8090,
+          "path": "",
+          "pathTransform": "",
+          "primary": true,
+          "username": "hapi",
+          "password": "hapi123"
+        }
+      ],
+      "requestBody": true,
+      "responseBody": true,
+      "rewriteUrlsConfig": [],
+      "name": "HAPI-SYNC",
+      "urlPattern": "$",
+      "matchContentRegex": null,
+      "matchContentXpath": null,
+      "matchContentValue": null,
+      "matchContentJson": null,
+      "pollingSchedule": null,
+      "tcpHost": null,
+      "tcpPort": null,
+      "updatedBy": {
+        "id": "5ffd8711fa52440012ed54fe",
+        "name": "Super User"
+      },
+      "alerts": []
+    } ,
+    {
+      "methods": [
+        "GET",
+        "POST",
+        "DELETE",
+        "PUT"
+      ],
+      "type": "http",
+      "allow": [
+        "opencr"
+      ],
+      "whitelist": [],
+      "authType": "private",
+      "matchContentTypes": [],
+      "properties": [],
+      "txViewAcl": [],
+      "txViewFullAcl": [],
+      "txRerunAcl": [],
+      "status": "enabled",
+      "rewriteUrls": false,
+      "addAutoRewriteRules": true,
+      "autoRetryEnabled": false,
+      "autoRetryPeriodMinutes": 60,
+      "requestBody": true,
+      "responseBody": true,
+      "name": "CR Channel",
+      "description": "Add or Get Resource Data From/To openCR",
+      "urlPattern": "^/CR/fhir.*$",
+      "matchContentRegex": null,
+      "matchContentXpath": null,
+      "matchContentValue": null,
+      "matchContentJson": null,
+      "pollingSchedule": null,
+      "tcpHost": null,
+      "tcpPort": null,
+      "rewriteUrlsConfig": [],
+      "alerts": [],
+      "routes": [
+        {
+          "type": "http",
+          "status": "enabled",
+          "forwardAuthHeader": false,
+          "name": "Add/Get Resources",
+          "secured": false,
+          "host": "opencr",
+          "port": 3000,
+          "path": "",
+          "pathTransform": "s/CR\\/fhir/fhir/g",
+          "primary": true,
+          "username": "",
+          "password": ""
+        }
+      ],
+      "priority": 1
+    }
+  ],
+  "Mediators": [],
+  "ContactGroups": [],
+  "KeystoreModelAPI": []
+}

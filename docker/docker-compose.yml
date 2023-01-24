@@ -1,9 +1,10 @@
 version: '2.1'
 services:
+# OpenMRS - EMR
   openmrs-referenceapplication-mysql:
     restart: "always"
     image: mysql:5.6
-    container_name: plir-reff-app-mysql
+    container_name: reff-app-mysql
     command: "mysqld --character-set-server=utf8 --collation-server=utf8_general_ci"
     ports:
       - "3306:3306"
@@ -17,14 +18,14 @@ services:
       test: "exit 0"
     volumes:
       - openmrs-referenceapplication-mysql-data:/var/lib/mysql
-      - ../volumes/mysql.cnf:/etc/mysql/conf.d/custom.cnf  # mysql config preconfigured to allow binlog/debezium
+      - ../config/mysql/mysql.cnf:/etc/mysql/conf.d/custom.cnf  # mysql config preconfigured to allow binlog/debezium
       #- ./data:/var/lib/mysql
       - ../volumes/dbdump:/docker-entrypoint-initdb.d 
 
   openmrs-referenceapplication:
     restart: "always"
     image: openmrs/openmrs-reference-application-distro:2.11.0
-    container_name: plir-reff-app
+    container_name: reff-app
     depends_on:
       - openmrs-referenceapplication-mysql
     ports:
@@ -42,17 +43,18 @@ services:
       timeout: 20s
     volumes:
       - openmrs-referenceapplication-data:/usr/local/tomcat/.OpenMRS/
-      - /usr/local/tomcat/.OpenMRS/modules/ # do not store modules in data
+      - ../volumes/modules/:/usr/local/tomcat/.OpenMRS/modules/ # do not store modules in data
       - /usr/local/tomcat/.OpenMRS/owa/ # do not store owa in data
 
+#OpenHIM -IOL
   mongo:
-    container_name: plir-openhim-mongo
+    container_name: openhim-mongo
     ports:
       - "27017:27017"
     image: mongo:3.4
     
   openhim-core:
-    container_name: plir-openhim-core
+    container_name: openhim-core
     image: jembi/openhim-core
     environment:
       - mongo_url=mongodb://mongo/openhim
@@ -68,19 +70,84 @@ services:
     depends_on:
       - mongo
   openhim-console:
-    container_name: plir-openhim-console
+    container_name: openhim-console
     image: jembi/openhim-console
     ports:
         - "9000:80"
     volumes:
-      - ../volumes/default.json:/usr/share/nginx/html/config/default.json
+      - ../config/openhim/default.json:/usr/share/nginx/html/config/default.json
 
+  # Loads Default OpenHIM Config
+  openhim-config:
+    container_name: openhim-config
+    image: ghcr.io/i-tech-uw/openhim-config:v0.0.0
+    volumes:
+      - ../config/openhim/openhim-config.json:/app/test-openhim-config.json    
+
+# Hapi-FHIR -  SHR
   hapi-fhir-jpaserver-starter:
     image: openmrsinfra/openmrs-hapi-fhir:openmrs-fhir-plir_cql
-    container_name: plir-hapi-fhir-cql
+    container_name: hapi-fhir-shr
     restart: on-failure
     ports:
       - "8090:8080"   
+
+###
+  # OpenCR - Client Registry
+  ###
+  opencr:
+    container_name: opencr
+    hostname: opencr
+    image: intrahealth/opencr:latest
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=docker
+      - HAPI_FHIR_URL=http://opencr-fhir:8080/fhir/metadata
+    volumes:
+      - ../config/opencr/config.json:/src/server/config/config_docker.json
+      - ../config/opencr/mediator.json:/src/server/config/mediator.json
+      - ../config/opencr/decisionRules.json:/src/server/config/decisionRules.json
+      - ../config/opencr/PatientRelationship.json:/src/resources/Relationships/PatientRelationship.json
+    ports:
+      - 3000:3000
+  opencr-fhir:
+    image: hapiproject/hapi:v5.1.0
+    container_name: opencr-fhir
+    hostname: opencr-fhir
+    restart: unless-stopped
+    healthcheck:
+      test: "curl -sS http://opencr-fhir:8080/fhir/metadata || exit 1"
+      interval: 90s
+      timeout: 30s
+      retries: 3
+    volumes:
+      - /data/hapi
+    #   - ./configs/opencr/application.yml:/data/hapi/application.yaml
+    ports:
+      - 8081:8080
+    # env_file:
+    #   - ./configs/opencr/.env
+    # environment:
+    #   SPRING_CONFIG_LOCATION: 'file:///data/hapi/application.yaml'
+
+  es:
+    container_name: es
+    hostname: es
+    image: intrahealth/elasticsearch:latest
+    restart: unless-stopped
+    environment:
+      - node.name=es01
+      - discovery.type=single-node
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms1024m -Xmx1024m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - /usr/share/elasticsearch/data
+    healthcheck:
+      test: "curl --silent --fail http://es:9200/_cluster/health || exit 1"      
  
 volumes:
    openmrs-referenceapplication-mysql-data:
