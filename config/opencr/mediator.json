@@ -97,7 +97,7 @@
     "defaultChannelConfig": [{
       "requestBody": true,
       "responseBody": true,
-      "name": "Add or Get Resource Data From/To openCR",
+      "name": "CR Chanel",
       "description": "Add or Get Resource Data From/To openCR",
       "urlPattern": "^/CR/fhir.*$",
       "matchContentRegex": null,

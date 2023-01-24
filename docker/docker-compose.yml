@@ -4,7 +4,7 @@ services:
   openmrs-referenceapplication-mysql:
     restart: "always"
     image: mysql:5.6
-    container_name: plir-reff-app-mysql
+    container_name: reff-app-mysql
     command: "mysqld --character-set-server=utf8 --collation-server=utf8_general_ci"
     ports:
       - "3306:3306"
@@ -25,7 +25,7 @@ services:
   openmrs-referenceapplication:
     restart: "always"
     image: openmrs/openmrs-reference-application-distro:2.11.0
-    container_name: plir-reff-app
+    container_name: reff-app
     depends_on:
       - openmrs-referenceapplication-mysql
     ports:
@@ -48,13 +48,13 @@ services:
 
 #OpenHIM -IOL
   mongo:
-    container_name: plir-openhim-mongo
+    container_name: openhim-mongo
     ports:
       - "27017:27017"
     image: mongo:3.4
     
   openhim-core:
-    container_name: plir-openhim-core
+    container_name: openhim-core
     image: jembi/openhim-core
     environment:
       - mongo_url=mongodb://mongo/openhim
@@ -70,17 +70,24 @@ services:
     depends_on:
       - mongo
   openhim-console:
-    container_name: plir-openhim-console
+    container_name: openhim-console
     image: jembi/openhim-console
     ports:
         - "9000:80"
     volumes:
       - ../config/openhim/default.json:/usr/share/nginx/html/config/default.json
 
+  # Loads Default OpenHIM Config
+  openhim-config:
+    container_name: openhim-config
+    image: ghcr.io/i-tech-uw/openhim-config:v0.0.0
+    volumes:
+      - ../config/openhim/openhim-config.json:/app/test-openhim-config.json    
+
 # Hapi-FHIR -  SHR
   hapi-fhir-jpaserver-starter:
     image: openmrsinfra/openmrs-hapi-fhir:openmrs-fhir-plir_cql
-    container_name: plir-hapi-fhir-cql
+    container_name: hapi-fhir-shr
     restart: on-failure
     ports:
       - "8090:8080"   

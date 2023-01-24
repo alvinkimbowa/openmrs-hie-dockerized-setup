@@ -25,7 +25,7 @@
       "trustSelfSigned": true,
       "urn": "urn:mediator:ci_clientregistry"
     },
-    "register": false
+    "register": true
   },
   "cronJobs": {
     "patientReprocessing": "0 21 * * *"
@@ -78,7 +78,7 @@
     }
   },
   "sync": {
-    "lastFHIR2ESSync": "2023-01-23T13:39:55"
+    "lastFHIR2ESSync": "2023-01-24T10:49:19"
   },
   "__comments": {
     "matching.tool": "this tells if the app should use mediator algorithms or elasticsearch algorithms for matching, two options mediator and elasticsearch"

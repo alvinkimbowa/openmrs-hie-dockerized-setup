@@ -21,14 +21,17 @@ To run the project , follow the instructions below .
 | Instance  |     URL       | credentials (user : password)|
 |---------- |:-------------:|------:                       |
 | OpenMRS   | http://localhost:8080/openmrs| admin : Admin123 |
-| OpenHIM   | http://localhost:9000  |  root@openhim.org : openhim-password |
+| OpenHIM   | http://localhost:9000  |  root@openhim.org : openhim |
 | Hapi FHir | http://localhost:8090 |    hapi : hapi123| 
-| OpenCR    | https://localhost:3000/crux|  root@intrahealth.org  : intrahealth|
+| OpenCR    | http://localhost:3000/crux|  root@intrahealth.org  : intrahealth|
 
 
    Note:
 
- * The Openhim instance is pre-configured with the necesary meta-data
+ * The Openhim instance is pre-configured with the necesary meta-data. 
+   Openhim has two clients
+   1. hapi  for the SHR .credentials -> hapi : Admin123
+   2. opencr for the CR .credentials ->   opencr : Admin123
 
   > Wait for the **plir-streaming-pipeline** container to start running before adding any data into OpenMRS. The running Pipeline will then listen to any  data changes  added in to OpenMRS and route them to the FHIR server through OpenHIM.
 

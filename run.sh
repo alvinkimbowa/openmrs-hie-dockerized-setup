@@ -2,7 +2,7 @@
 #######################################
 # Spin up OpenMRS , OpenHIM and HAPI FHIR
 #######################################
-echo "..STARTING OPENHIM , OPENMRS , HAPI-FHIR "
+echo "..STARTING OPENHIM , OPENMRS , OPENCR ,HAPI-FHIR "
 docker-compose -f docker/docker-compose.yml up -d  --remove-orphans
 
  sleep 4m
@@ -49,11 +49,11 @@ hapifhir_start_wait_time=0
  ###########################################################
 # Load OpenHIM metadata
 ############################################################
- echo "..LOADING CHANNEL AND CLIENT METADATA INTO OPENHIM"
- ./scripts/openhim-api.sh root@openhim.org openhim-password -v https://localhost:8085/metadata -d @./config/openhim//openhim-config.json -H "Content-Type:application/json"
+# echo "..LOADING CHANNEL AND CLIENT METADATA INTO OPENHIM"
+# ./scripts/openhim-api.sh root@openhim.org openhim-password -v https://localhost:8085/metadata -d @./config/openhim/openhim-config.json -H "Content-Type:application/json"
 
  ###########################################################
 # Starting the Debezium-streaming-fhir-analytics tool
 ############################################################
  #echo "..STARTING STREAMING PIPE LINE " 
-#docker-compose -f docker/pipeline-compose.yml up  
+docker-compose -f docker/pipeline-compose.yml up  
