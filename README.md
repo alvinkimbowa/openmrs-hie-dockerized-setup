@@ -30,8 +30,8 @@ To run the project , follow the instructions below .
 
  * The Openhim instance is pre-configured with the necesary meta-data. 
    Openhim has two clients
-   1. hapi  for the SHR .credentials -> hapi : Admin123
-   2. opencr for the CR .credentials ->   opencr : Admin123
+   1. `hap` . , for the SHR transactions -> hapi : Admin123
+   2. `opencr` , for the the CR transactions . Listens to endpoints */CR/fhir* ->  opencr : Admin123
 
   > Wait for the **plir-streaming-pipeline** container to start running before adding any data into OpenMRS. The running Pipeline will then listen to any  data changes  added in to OpenMRS and route them to the FHIR server through OpenHIM.
 
