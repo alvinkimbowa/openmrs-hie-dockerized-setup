@@ -5,7 +5,7 @@
   },
   "app": {
     "port": 3000,
-    "installed": false
+    "installed": true
   },
   "clients": [
     {
@@ -58,6 +58,10 @@
       "uri": "http://clientregistry.org/openmrs",
       "displayName": "Internal ID"
     },
+    "openmrs": {
+      "uri": "http://clientregistry.org/openmrs",
+      "displayName": "OpenMRS"
+    },
     "art": {
       "uri": "http://clientregistry.org/artnumber",
       "displayName": "ART ID"
@@ -78,7 +82,7 @@
     }
   },
   "sync": {
-    "lastFHIR2ESSync": "2023-01-24T10:49:19"
+    "lastFHIR2ESSync": "2023-02-08T15:49:26"
   },
   "__comments": {
     "matching.tool": "this tells if the app should use mediator algorithms or elasticsearch algorithms for matching, two options mediator and elasticsearch"

@@ -84,12 +84,12 @@
       "passwordSalt": "f62b4c879d9c1c69b20f31176863aa60",
       "passwordHash": "ba67095de0431091d06f02e45768519088fa0fc72c978b5958e342ffe131d6af3b870520ec088d5ca33b652a10012b736143174469af15c9d48895578090fe71",
       "authentication": {
-         "enableJWTAuthentication": true,
-         "jwtSecretOrPrivateKey": "randomUUID",
-         "jwtAlgorithms": ["HS256", "HS384", "HS512"],
-         "jwtAudience": ["UUID_representing_downstream_service"],
-         "jwtIssuer": "UUID_representing_issuer"
-       }
+  "enableJWTAuthentication": true,
+  "jwtSecretOrPrivateKey": "randomUUID",
+  "jwtAlgorithms": ["HS256", "HS384", "HS512"],
+  "jwtAudience": ["UUID_representing_downstream_service"],
+  "jwtIssuer": "UUID_representing_issuer"
+	}
     }
   ],
   "Channels": [
