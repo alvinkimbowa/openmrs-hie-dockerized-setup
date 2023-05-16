@@ -8,7 +8,7 @@ See Docker Installation Instructions for your environment.  If running on Linux,
 To run the project , follow the instructions below .
 1. Clone the repository locally
 
-        git clone https://github.com/openmrs/openmrs-plir-dockerized-setup.git
+        git clone https://github.com/alvinkimbowa/openmrs-hie-dockerized-setup.git
 
 2. Move to the project root directory and spin up the pre-configured OpenMRS ,OpenHIM ,Hapi-Fhir and the streaming-binlog pipeline instances . 
 
